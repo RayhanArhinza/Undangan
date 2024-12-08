@@ -39,62 +39,99 @@
 </head>
 <body class="bg-gray-100">
 
+<!-- Header Section -->
+<header class="relative h-screen text-center">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('wedding2.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+    </div>
+    <div class="relative z-10 flex flex-col justify-center items-center h-full text-white p-4">
+        <div class="border-4 border-white px-6 py-4 inline-block">
+            <h1 class="elegant-font text-5xl mb-2">Sarah & John</h1>
+            <p class="text-xl">We're Getting Married!</p>
+        </div>
+        <div id="countdown" class="flex space-x-4 text-center mt-4"></div>
+    </div>
+</header>
 
-    <div id="app" class="max-w-md mx-auto bg-white shadow-lg">
-        <!-- Header Section -->
-        <header class="relative h-screen text-center">
-            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('wedding2.jpg');">
-                <div class="absolute inset-0 bg-black opacity-50"></div>
+
+
+
+        <!-- Add audio element before the main app div -->
+        <audio id="backgroundMusic" loop autoplay style="display:none;">
+            <source src="Westlife.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+
+<!-- Pasangan Section with Background Image -->
+<section class="py-20 text-center bg-gradient-to-br from-gray-100 to-gray-200">
+    <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Overlay untuk meningkatkan kontras teks -->
+    <h2 class="elegant-font text-4xl text-gray-800 mb-12 tracking-wider">
+        <span class="border-b-4 border-gold-500 pb-2">Tentang Kami</span>
+    </h2>
+
+    <div class="container mx-auto px-4"> <!-- Menambahkan container -->
+        <div class="flex flex-col lg:flex-row justify-center lg:space-x-12 mb-16 relative z-10">
+            <!-- Sarah Section -->
+            <div class="transform transition duration-500 hover:scale-105 mb-8 lg:mb-0">
+                <img src="wedding.jpg" alt="Sarah" class="rounded-full mx-auto mb-4 border-4 border-white shadow-xl transform transition-all duration-300 hover:scale-110 max-w-full h-auto lg:max-w-xs">
+                <h3 class="text-2xl font-serif">Sarah</h3>
+                <p class="text-md mt-2">Putri pertama dari pasangan Bapak Andi dan Ibu Maria, yang tumbuh dengan penuh kasih sayang dan nilai-nilai kebahagiaan keluarga.</p>
             </div>
-            <div class="relative z-10 flex flex-col justify-center items-center h-full text-white p-4">
-                <h1 class="elegant-font text-4xl mb-4">Sarah & John</h1>
-                <p class="text-xl mb-6">We're Getting Married!</p>
-                <div id="countdown" class="flex space-x-4 text-center"></div>
+
+            <!-- John Section -->
+            <div class="transform transition duration-500 hover:scale-105">
+                <img src="wedding.jpg" alt="John" class="rounded-full mx-auto mb-4 border-4 border-white shadow-xl transform transition-all duration-300 hover:scale-110 max-w-full h-auto lg:max-w-xs">
+                <h3 class="text-2xl font-serif">John</h3>
+                <p class="text-md mt-2">Putra kedua dari keluarga Bapak Dwi dan Ibu Rina, yang selalu mendukung impian dan perjalanan hidup yang penuh semangat.</p>
             </div>
-        </header>
-
-
-
-
-
-
-        <!-- Pasangan Section with Background Image -->
-        <section class="py-16 text-center about-background">
-            <h2 class="elegant-font text-3xl mb-8">Tentang Kami</h2>
-            <div class="flex justify-center space-x-8 mb-8">
-                <div class="transform transition duration-500 hover:scale-105">
-                    <img src="wedding.jpg" alt="Sarah" class="rounded-full mx-auto mb-4 border-4 border-gray-300 shadow-lg">
-                    <h3 class="text-xl">Sarah</h3>
-                </div>
-                <div class="transform transition duration-500 hover:scale-105">
-                    <img src="wedding.jpg" alt="John" class="rounded-full mx-auto mb-4 border-4 border-gray-300 shadow-lg">
-                    <h3 class="text-xl">John</h3>
-                </div>
-            </div>
-            <p class="max-w-md mx-auto px-4 italic">Kami berdua sangat senang berbagi momen spesial ini dengan Anda. Dengan cinta dan kebahagiaan, kami mengundang Anda untuk menjadi bagian dari cerita kami.</p>
-        </section>
-<!-- Galeri Foto Prewedding -->
-<section class="py-16 bg-gray-100">
-    <h2 class="elegant-font text-3xl text-center mb-12">Galeri Prewedding</h2>
-    <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 px-4">
-        <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
-            <img src="wedding3.jpg" alt="Foto Prewedding 1" class="w-full h-60 object-cover">
-        </div>
-        <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
-            <img src="wedding3.jpg" alt="Foto Prewedding 2" class="w-full h-60 object-cover">
-        </div>
-        <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
-            <img src="wedding3.jpg" alt="Foto Prewedding 3" class="w-full h-60 object-cover">
-        </div>
-        <div class="overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
-            <img src="wedding3.jpg" alt="Foto Prewedding 4" class="w-full h-60 object-cover">
         </div>
 
+        <p class="max-w-2xl mx-auto px-6 text-lg font-serif italic relative z-10">
+            Kami berdua sangat senang berbagi momen spesial ini dengan Anda. Dengan cinta dan kebahagiaan, kami mengundang Anda untuk menjadi bagian dari cerita indah yang baru dimulai.
+        </p>
     </div>
 </section>
 
 
- <!-- Elegant Event and Location Section -->
+
+
+
+
+
+
+<!-- Galeri Foto Prewedding -->
+<section class="py-16 bg-gray-100 text-center">
+    <div class="container mx-auto px-4">
+    <h2 class="elegant-font text-4xl text-gray-800 mb-12 tracking-wider">
+        <span class="border-b-4 border-gold-500 pb-2">Galeri Prewedding</span>
+    </h2>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 px-4">
+        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
+            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
+        </div>
+        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
+            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
+        </div>
+        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
+            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
+        </div>
+        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
+            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
+        </div>
+        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
+            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
+        </div>
+        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
+            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
+        </div>
+
+    </div>
+    </div>
+</section>
+
+
+<!-- Elegant Event and Location Section -->
 <section class="bg-gradient-to-br from-gray-50 to-gray-100 py-20 text-center">
     <div class="container mx-auto px-4">
         <h2 class="elegant-font text-4xl text-gray-800 mb-12 tracking-wider">
@@ -139,7 +176,7 @@
                 <span class="border-b-4 border-gold-500 pb-2">Lokasi</span>
             </h2>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-1 gap-8">
                 <!-- Location Details -->
                 <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-center">
                     <div class="mb-6 text-center">
@@ -149,7 +186,7 @@
                         </svg>
                         <h3 class="elegant-font text-3xl text-gray-800">Pasar Soponyono</h3>
                     </div>
-                    <div class="text-center text-gray-700 space-y-3">
+                    <div class="text-center text-gray-700 space-y-">
                         <p class="text-lg">Rungkut, Surabaya</p>
                         <p class="italic text-base">Tempat bersejarah penuh kenangan</p>
                     </div>
@@ -159,21 +196,18 @@
                 <div class="rounded-xl overflow-hidden shadow-lg">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.560280844841!2d112.77973381528002!3d-7.333631294696008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbf259cd3e5f%3A0xa1e0cf979340d53f!2sPasar%20Soponyono!5e0!3m2!1sen!2sid!4v1695461203771!5m2!1sen!2sid" 
-                        width="80%" 
-                        height="4800" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="w-full h-full object-cover"
+                        width="100%" 
+                        height="400" 
                     ></iframe>
                 </div>
             </div>
         </div>
-
-
     </div>
 </section>
+
+
+
+
 
 
 
@@ -204,7 +238,7 @@
         <footer class="bg-gray-200 py-8 text-center">
             <p>© 2024 Sarah & John Wedding</p>
         </footer>
-    </div>
+
 
     <!-- Modal for Attendance Confirmation -->
     <div id="konfirmasiModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
@@ -230,11 +264,6 @@
             </form>
         </div>
     </div>
-        <!-- Add audio element before the main app div -->
-        <audio id="backgroundMusic" loop autoplay style="display:none;">
-            <source src="Westlife.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
 
     <script>
         // Countdown Timer
