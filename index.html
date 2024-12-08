@@ -9,11 +9,100 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+        html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+  width: 100%;
+  max-width: 1200px; /* Maksimal lebar 1200px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 960px; /* Ukuran container lebih kecil pada desktop */
+  }
+}
+
+
+
+    swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    body {
+      background: #000;
+      color: #000;
+    }
+
+    swiper-container {
+      width: 100%;
+      height: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    swiper-slide {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .mySwiper {
+      height: 80%;
+      width: 100%;
+    }
+
+    .mySwiper2 {
+      height: 20%;
+      box-sizing: border-box;
+      padding: 10px 0;
+    }
+
+    .mySwiper2 swiper-slide {
+      width: 25%;
+      height: 100%;
+      opacity: 0.4;
+    }
+
+    .mySwiper2 .swiper-slide-thumb-active {
+      opacity: 1;
+    }
+
+    swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
         .elegant-font {
             font-family: 'Playfair Display', serif;
         }
@@ -30,6 +119,9 @@
             outline: none;
             border-color: #667eea;
         }
+        
+
+
             /* Gold Color Palette */
     .bg-gold-500 { background-color: #D4AF37; }
     .text-gold-500 { color: #D4AF37; }
@@ -102,36 +194,66 @@
 
 <!-- Galeri Foto Prewedding -->
 <section class="py-16 bg-gray-100 text-center">
-    <div class="container mx-auto px-4">
     <h2 class="elegant-font text-4xl text-gray-800 mb-12 tracking-wider">
         <span class="border-b-4 border-gold-500 pb-2">Galeri Prewedding</span>
     </h2>
-    <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 px-4">
-        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
-            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
-        </div>
-        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
-            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
-        </div>
-        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
-            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
-        </div>
-        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
-            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
-        </div>
-        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
-            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
-        </div>
-        <div class="overflow-hidden  transform hover:scale-105 transition duration-300">
-            <img src="wedding6.png" alt="Foto Prewedding 4" class="">
-        </div>
-
+    <div class="container">
+      <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+        thumbs-swiper=".mySwiper2" loop="true" space-between="10" navigation="true">
+        <swiper-slide>
+          <img src="wedding3.jpg" />
+        </swiper-slide>
+        <swiper-slide>
+          <img src="wedding3.jpg" />
+        </swiper-slide>
+        <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+      </swiper-container>
+  
+      <swiper-container class="mySwiper2" loop="true" space-between="10" slides-per-view="4" free-mode="true"
+        watch-slides-progress="true">
+        <swiper-slide>
+          <img src="wedding3.jpg" />
+        </swiper-slide>
+        <swiper-slide>
+          <img src="wedding3.jpg" />
+        </swiper-slide>
+        <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+          <swiper-slide>
+            <img src="wedding3.jpg" />
+          </swiper-slide>
+       
+      </swiper-container>
     </div>
-    </div>
-</section>
+  </section>
+  
 
 
-<!-- Elegant Event and Location Section -->
+<<!-- Elegant Event and Location Section -->
 <section class="bg-gradient-to-br from-gray-50 to-gray-100 py-20 text-center">
     <div class="container mx-auto px-4">
         <h2 class="elegant-font text-4xl text-gray-800 mb-12 tracking-wider">
@@ -176,7 +298,8 @@
                 <span class="border-b-4 border-gold-500 pb-2">Lokasi</span>
             </h2>
             
-            <div class="grid md:grid-cols-1 gap-8">
+            <!-- Change the grid layout to 2 columns for location and map -->
+            <div class="grid md:grid-cols-2 gap-8">
                 <!-- Location Details -->
                 <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-center">
                     <div class="mb-6 text-center">
@@ -204,6 +327,7 @@
         </div>
     </div>
 </section>
+
 
 
 
@@ -264,8 +388,10 @@
             </form>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 
     <script>
+        
         // Countdown Timer
         function updateCountdown() {
             const weddingDate = luxon.DateTime.local(2025, 4, 30, 10, 0);
