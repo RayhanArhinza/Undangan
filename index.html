@@ -801,7 +801,7 @@
 
       // Buat elemen lingkaran untuk animasi di page 2 & 3
       createCirclesPage2();
-      createCirclesPage3();
+      // createCirclesPage3();
 
       // Mulai animasi transisi undangan
       welcomeScreen.classList.add('hide-welcome');
@@ -887,25 +887,25 @@ observerPage7.observe(document.getElementById('page7'));
     }
 
     // Fungsi untuk membuat lingkaran animasi pada page 3
-    function createCirclesPage3() {
-      const container = document.getElementById('circleContainerPage3');
-      const circleCount = 10;
-      const sizes = [60, 80, 100, 150, 200];
+    // function createCirclesPage3() {
+    //   const container = document.getElementById('circleContainerPage3');
+    //   const circleCount = 10;
+    //   const sizes = [60, 80, 100, 150, 200];
 
-      for (let i = 0; i < circleCount; i++) {
-        const circle = document.createElement('div');
-        circle.classList.add('floating-circle');
-        const size = sizes[Math.floor(Math.random() * sizes.length)];
-        circle.style.width = `${size}px`;
-        circle.style.height = `${size}px`;
-        circle.style.left = `${Math.random() * 100}%`;
-        circle.style.top = `${Math.random() * 100}%`;
-        circle.style.opacity = 0.2 + Math.random() * 0.3;
-        circle.style.animationDuration = `${8 + Math.random() * 7}s`;
-        circle.style.animationDelay = `${Math.random() * 3}s`;
-        container.appendChild(circle);
-      }
-    }
+    //   for (let i = 0; i < circleCount; i++) {
+    //     const circle = document.createElement('div');
+    //     circle.classList.add('floating-circle');
+    //     const size = sizes[Math.floor(Math.random() * sizes.length)];
+    //     circle.style.width = `${size}px`;
+    //     circle.style.height = `${size}px`;
+    //     circle.style.left = `${Math.random() * 100}%`;
+    //     circle.style.top = `${Math.random() * 100}%`;
+    //     circle.style.opacity = 0.2 + Math.random() * 0.3;
+    //     circle.style.animationDuration = `${8 + Math.random() * 7}s`;
+    //     circle.style.animationDelay = `${Math.random() * 3}s`;
+    //     container.appendChild(circle);
+    //   }
+    // }
 
     // Fungsi memunculkan teks dengan animasi
     function revealTextElements(pageSelector) {
