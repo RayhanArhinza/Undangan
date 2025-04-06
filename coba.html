@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Habib & Adiba Wedding Invitation</title>
+  
+  <!-- Font Awesome (ikon) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Swiper (untuk gallery) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css">
+
+  <style>
+    /* Reset dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Pastikan tidak ada scroll horizontal */
+    html, body {
+      height: 100%;
+      overflow-x: hidden; /* Penting: cegah scroll ke samping */
+      scroll-behavior: smooth;
+      position: relative;
+    }
+
+    /* Kontainer utama berisi semua halaman */
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;              /* Tinggi kontainer penuh */
+      overflow-y: scroll;         /* Scroll hanya ke bawah */
+      scroll-snap-type: y mandatory; /* Scroll snap ke tiap halaman secara vertikal */
+    }
+
+    /* Setiap halaman (page) */
+    .page {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-position: center;
+      background-size: cover;
+      scroll-snap-align: start;
+      overflow: hidden; /* Penting: mencegah konten keluar ke samping */
+    }
+
+    /* Urutan z-index halaman */
+    .page-1 {
+      z-index: 3;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-2 {
+      z-index: 2;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+    .page-3 {
+      z-index: 1;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+    .page-4 {
+      z-index: 0;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    .page-5 {
+      z-index: -1;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      background-size: cover;
+      background-position: center;
+    }
+    .page-6 {
+      z-index: -2;
+      background-color: rgba(0, 0, 0, 0.75);
+      background-size: cover;
+      background-position: center;
+      overflow-y: auto; /* Hanya scroll vertical dalam gallery */
+    }
+
+    /* --- Tambahkan Page 7 (contoh) jika diperlukan ---
+    .page-7 {
+      z-index: -3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    --------------------------------------------------- */
+
+    /* Konten di dalam halaman */
+    .content {
+      position: relative;
+      z-index: 5;
+      padding: 20px;
+      max-width: 100%;
+      width: 350px;
+      margin: 0 auto;
+      text-align: center;
+      color: white;
+    }
+    .left-content {
+      text-align: left;
+    }
+    .right-content {
+      text-align: right;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #f8b195;
+      font-weight: bold;
+    }
+    .names {
+      font-size: 32px;
+      color: #f8b195;
+      font-weight: bold;
+    }
+    .subheading {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: white;
+    }
+    .quote {
+      font-size: 14px;
+      font-style: italic;
+      margin: 20px 0 10px 0;
+      line-height: 1.6;
+    }
+    .quran-reference {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* Sesuaikan margin agar tidak melebihi layar */
+    .page-3 .content {
+      margin-bottom: 50px;
+      /* Hapus margin-left: -2px; agar tidak melebar ke samping */
+    }
+    .page-4 .content {
+      margin-bottom: 50px;
+    }
+
+    .input-box {
+      margin: 15px 0;
+      position: relative;
+    }
+    .input-field, .select-field {
+      padding: 10px;
+      width: 100%;
+      border: 2px solid white;
+      background: transparent;
+      border-radius: 4px;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+    }
+    .input-field::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .select-field {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+    }
+    .cta-button {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 12px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+    }
+    .cta-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Teks awal tersembunyi (untuk animasi muncul satu per satu) */
+    .hidden-text {
+      opacity: 0;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 24px;
+      animation: bounce 2s infinite;
+      opacity: 0.8;
+      z-index: 10;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    /* Keyframes animasi */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @keyframes rotateIn {
+      from {
+        opacity: 0;
+        transform: rotate(-45deg);
+      }
+      to {
+        opacity: 1;
+        transform: rotate(0deg);
+      }
+    }
+
+    /* Kelas animasi */
+    .animate-slideInLeft {
+      animation: slideInLeft 1s ease-out forwards;
+    }
+    .animate-slideInRight {
+      animation: slideInRight 1s ease-out forwards;
+    }
+    .animate-fadeIn {
+      animation: fadeIn 1s ease-out forwards;
+    }
+    .animate-zoomIn {
+      animation: zoomIn 1s ease-out forwards;
+    }
+    .animate-rotateIn {
+      animation: rotateIn 1s ease-out forwards;
+    }
+
+    /* Lingkaran putih animasi (opsional) */
+    .floating-circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+      animation-name: float;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translate(-200px, 200px) scale(1.3);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translate(300px, -250px) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Tampilan awal (Welcome) & kontainer pages */
+    #welcomeScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1000;
+      transition: transform 1.5s ease, opacity 1.5s ease;
+    }
+    #pagesContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+      z-index: 990;
+    }
+    .hide-welcome {
+      transform: translateY(-100%) !important;
+      opacity: 0 !important;
+    }
+    .show-pages {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Tombol Play/Pause musik */
+    .music-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      z-index: 9999;
+    }
+    #musicIcon {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .pause-icon {
+      position: absolute;
+      top: 2.1px;
+      left: 0.5px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1em;
+      pointer-events: none;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spin {
+      animation: spin 3s linear infinite;
+    }
+
+    /* Style Page 5 (Save The Date + Countdown) */
+    .countdown-timer {
+      font-size: 20px;
+      margin: 20px 0;
+      color: #fff;
+      font-weight: bold;
+    }
+    .event-info {
+      margin-top: 20px;
+      color: #fff;
+    }
+    .event-info h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    /* CSS Page 6 (Gallery) */
+    .gallery-header {
+      color: #f8b195;
+      text-align: center;
+      padding: 30px 0 10px;
+      font-size: 36px;
+      font-weight: bold;
+      position: relative;
+      width: 100%;
+      margin-top: 90px;
+    }
+    .gallery-header::after {
+      content: '';
+      display: block;
+      width: 200px;
+      height: 2px;
+      background-color: #f8b195;
+      margin: 5px auto;
+    }
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      padding: 10px;
+      max-width: 100%;
+      width: 350px;
+      margin: 0 auto 50px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1/1;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox (untuk gallery) */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .close-lightbox {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 10010;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .swiper-slide img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+     /* Page 7 */
+     .page-7 {
+  z-index: -3; /* agar berada di bawah page 6 */
+  display: flex;
+  justify-content: flex-end; /* memindahkan konten ke sebelah kanan */
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.page-7 .content {
+      margin-bottom: 80%;
+    }
+.thankyou-content {
+  position: relative;
+  z-index: 2; /* Pastikan di atas overlay */
+  width: 100%;
+  max-width: 350px;
+  margin: 0; /* menghilangkan margin auto */
+  text-align: right; /* menyelaraskan teks ke kanan */
+  color: #fff;
+  padding: 20px;
+}
+
+
+.thankyou-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #f8b195;
+}
+
+.thankyou-desc {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.thankyou-sign {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f8b195;
+}
+
+/* Overlay dekorasi di page 7 (opsional) */
+.thankyou-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Audio Backsound -->
+  <audio id="backgroundMusic" src="beautifull.mp3" loop></audio>
+
+  <!-- Tombol Play/Pause -->
+  <div class="music-toggle" onclick="toggleMusic()">
+    <img id="musicIcon" src="vinyl.png" alt="Play/Pause">
+    <div id="pauseIcon" class="pause-icon" style="display: none;">
+      <i class="fa-solid fa-pause"></i>
+    </div>
+  </div>
+
+  <!-- HALAMAN PEMBUKA (WELCOME SCREEN) -->
+  <div id="welcomeScreen" class="page page-1" style="background-image: url('beautiful-couple-having-their-wedding-beach.jpg');">
+    <div class="content">
+      <h1>Habib & Adiba</h1>
+      <p class="subheading">Dear :</p>
+      <div class="input-box">
+        <input type="text" class="input-field" placeholder="Nama Tamu" id="guestName" />
+      </div>
+      <p class="subheading">Konfirmasi Kehadiran:</p>
+      <div class="input-box">
+        <select class="select-field" id="attendance">
+          <option value="akan hadir">Saya akan hadir</option>
+          <option value="tidak bisa hadir">Maaf, saya tidak bisa hadir</option>
+        </select>
+      </div>
+      <button class="cta-button" id="openInvitation">Buka Undangan</button>
+    </div>
+  </div>
+
+  <!-- CONTAINER UTAMA (SEMUA PAGE) -->
+  <div id="pagesContainer" class="container">
+    <!-- PAGE 1 -->
+    <div id="page1" class="page page-2" style="background-image: url('bride-groom-couple-wedding-photos.jpg');">
+      <div class="content">
+        <div class="left-content">
+          <p class="subheading hidden-text" data-animation="slideInLeft">
+            The Wedding Of
+          </p>
+          <h1 class="names hidden-text" data-animation="fadeIn">
+            Habib & Adiba
+          </h1>
+          <p class="quote hidden-text" data-animation="zoomIn">
+            "Dan segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)."
+          </p>
+          <p class="quran-reference hidden-text" data-animation="rotateIn">
+            (QS. Az-Zaryat: 49)
+          </p>
+        </div>
+        <p id="thankYouMessage" class="subheading hidden-text" data-animation="slideInLeft" style="margin-top: 20px; font-size: 16px;"></p>
+      </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div id="page2" class="page page-3" style="background-image: url('young-couple-marriage-photo-session-outside.jpg');">
+      <div class="content">
+        <div class="left-content">
+          <h1 class="names hidden-text" style="color: white;" data-animation="fadeIn">Adiba Putri Syakila</h1>
+          <hr style="border: 1px solid white;">
+          <p class="quote hidden-text" data-animation="slideInLeft">
+            Putri Pertama dari Bapak Andri Setiawan & Ibu Eva Naryanti
+          </p>
+          <button
+            class="cta-button hidden-text"
+            data-animation="zoomIn"
+            style="margin-top: 20px; border-radius: 50px;"
+            onclick="window.open('https://www.instagram.com/rayhansaneval','_blank')"
+          >
+            <i class="fa-brands fa-instagram" style="margin-right: 3px;"></i>
+            Instagram
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3 (Untuk Habib) -->
+    <div id="page4" class="page page-4" style="background-image: url('romantic-wedding-couple-love-standing-sea-eye-lake-poland-tatra-mountains.jpg');">
+      <div class="content" style="margin-left: auto; margin-right: 20px;">
+        <div class="right-content">
+          <h1 class="names hidden-text" data-animation="slideInRight" style="white-space: nowrap; color: white;">
+            Habib Putra Rahman
+          </h1>
+          <hr style="border: 1px solid white;">
+          <p class="quote hidden-text" data-animation="slideInRight">
+            Putra Pertama dari Bapak Ali & Ibu Siti Aisyah
+          </p>
+          <button
+            class="cta-button hidden-text"
+            data-animation="slideInRight"
+            style="margin-top: 20px; border-radius: 50px;"
+            onclick="window.open('https://www.instagram.com/yourprofile','_blank')"
+          >
+            <i class="fa-brands fa-instagram" style="margin-right: 3px;"></i>
+            Instagram
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 5 (Save The Date + Countdown) -->
+    <div id="page5" class="page page-5" style="background-image: url('beautiful-couple-having-their-wedding-beach.jpg');">
+      <div class="content" style="width: 100%; max-width: 350px;">
+        <h1 class="hidden-text" data-animation="slideInLeft" style="color: #f8b195; text-align: center; border-bottom: 1px solid #f8b195; padding-bottom: 10px;">
+          Save The Date
+        </h1>
+        <!-- Countdown Timer -->
+        <div class="countdown-container hidden-text" data-animation="fadeIn" style="display: flex; justify-content: space-between; margin: 20px 0;">
+          <div class="countdown-item" style="text-align: center;">
+            <div id="countdown-days" style="font-size: 24px; font-weight: bold;">0</div>
+            <div style="font-size: 14px;">Hari</div>
+          </div>
+          <div class="countdown-item" style="text-align: center;">
+            <div id="countdown-hours" style="font-size: 24px; font-weight: bold;">0</div>
+            <div style="font-size: 14px;">Jam</div>
+          </div>
+          <div class="countdown-item" style="text-align: center;">
+            <div id="countdown-minutes" style="font-size: 24px; font-weight: bold;">0</div>
+            <div style="font-size: 14px;">Menit</div>
+          </div>
+          <div class="countdown-item" style="text-align: center;">
+            <div id="countdown-seconds" style="font-size: 24px; font-weight: bold;">0</div>
+            <div style="font-size: 14px;">Detik</div>
+          </div>
+        </div>
+        <!-- Akad Nikah -->
+        <div class="event-section hidden-text" data-animation="slideInLeft" style="margin-top: 30px;">
+          <h2 style="color: #f8b195; font-size: 28px; text-align: left; margin-bottom: 15px; border-bottom: 1px solid #f8b195; padding-bottom: 5px;">
+            Akad Nikah
+          </h2>
+          <p style="font-size: 16px; font-weight: bold; margin-bottom: 5px; text-align: left;">
+            MINGGU, 30 MARET 2025
+          </p>
+          <p style="font-size: 14px; margin-bottom: 10px; text-align: left;">
+            08.00 WIB - SELESAI
+          </p>
+          <p style="font-size: 14px; line-height: 1.5; text-align: left;">
+            Jl. Sugeng Jeroni No.48A, Gedongkiwo<br>
+            Kec. Mantrijeron, Daerah Istimewa Yogyakarta
+          </p>
+          <button class="cta-button hidden-text" data-animation="zoomIn" style="margin-top: 10px; border-radius: 50px; font-size: 14px; padding: 8px 15px;">
+            <i class="fa-solid fa-map-marker-alt" style="margin-right: 5px;"></i>
+            Lokasi Acara
+          </button>
+        </div>
+        <!-- Resepsi -->
+        <div class="event-section hidden-text" data-animation="slideInRight" style="margin-top: 40px; text-align: right;">
+          <h2 style="color: #f8b195; font-size: 28px; text-align: right; margin-bottom: 15px; border-bottom: 1px solid #f8b195; padding-bottom: 5px;">
+            Resepsi
+          </h2>
+          <p style="font-size: 16px; font-weight: bold; margin-bottom: 5px; text-align: right;">
+            MINGGU, 30 MARET 2025
+          </p>
+          <p style="font-size: 14px; margin-bottom: 10px; text-align: right;">
+            08.00 WIB - SELESAI
+          </p>
+          <p style="font-size: 14px; line-height: 1.5; text-align: right;">
+            Jl. Sugeng Jeroni No.48A, Gedongkiwo<br>
+            Kec. Mantrijeron, Daerah Istimewa Yogyakarta
+          </p>
+          <div style="text-align: right;">
+            <button class="cta-button hidden-text" data-animation="zoomIn" style="margin-top: 10px; border-radius: 50px; font-size: 14px; padding: 8px 15px;">
+              <i class="fa-solid fa-map-marker-alt" style="margin-right: 5px;"></i>
+              Lokasi Acara
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /PAGE 5 -->
+
+    <!-- PAGE 6 (Gallery) -->
+    <div id="page6" class="page page-6" style="background-image: url('romantic-wedding-couple-love-standing-sea-eye-lake-poland-tatra-mountains.jpg');">
+      <div id="circleContainerPage6"></div>
+      <h1 class="gallery-header hidden-text" data-animation="fadeIn">Our Gallery</h1>
+      <div class="gallery-container">
+        <!-- Gallery Images - Row 1 -->
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 1" class="gallery-image" data-index="0">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 2" class="gallery-image" data-index="1">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 3" class="gallery-image" data-index="2">
+        </div>
+        
+        <!-- Gallery Images - Row 2 -->
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 4" class="gallery-image" data-index="3">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 5" class="gallery-image" data-index="4">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 6" class="gallery-image" data-index="5">
+        </div>
+        
+        <!-- Gallery Images - Row 3 -->
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 7" class="gallery-image" data-index="6">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 8" class="gallery-image" data-index="7">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 9" class="gallery-image" data-index="8">
+        </div>
+        
+        <!-- Gallery Images - Row 4 -->
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 10" class="gallery-image" data-index="9">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 11" class="gallery-image" data-index="10">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 12" class="gallery-image" data-index="11">
+        </div>
+        
+        <!-- Gallery Images - Row 5 -->
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 13" class="gallery-image" data-index="12">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 14" class="gallery-image" data-index="13">
+        </div>
+        <div class="gallery-item hidden-text" data-animation="fadeIn">
+          <img src="wedding3.jpg" alt="Wedding photo 15" class="gallery-image" data-index="14">
+        </div>
+      </div>
+    </div>
+    <!-- /PAGE 6 -->
+
+    <div id="page7" class="page page-7" style="background-image: url('bride-groom-couple-wedding-photos.jpg');">
+      <div class="content thankyou-content">
+        <div class="thankyou-overlay"></div>
+        
+        <p class="thankyou-title hidden-text" data-animation="zoomIn" style="font-size: 16px; color: #fff;">
+          Terima Kasih
+        </p>
+        
+        <p class="thankyou-desc hidden-text" data-animation="fadeIn">
+          Merupakan suatu kebahagiaan bagi kami jika Anda berkenan hadir di hari bahagia ini.
+          Terima kasih atas segala ucapan, doa, dan perhatian yang diberikan.
+          Sampai jumpa di hari pernikahan kami.
+        </p>
+        <hr style="border: 1px solid white;">
+        <h2 class="thankyou-sign hidden-text" data-animation="slideInLeft" style="padding-top: 10px;">
+          Habib & Adiba
+        </h2>
+      </div>
+    </div>
+    <!-- Contoh Page 7 (opsional) 
+
+    /PAGE 7 -->
+  </div>
+
+  <!-- Lightbox (Gallery) -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <span class="close-lightbox" onclick="closeLightbox()">
+        <i class="fa-solid fa-times"></i>
+      </span>
+      <div class="swiper-container" id="lightboxSwiper">
+        <div class="swiper-wrapper">
+          <!-- Swiper slides akan ditambahkan via JavaScript -->
+        </div>
+        <!-- Navigasi Swiper -->
+        <div class="swiper-button-next" style="color: white;"></div>
+        <div class="swiper-button-prev" style="color: white;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Swiper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+  <script>
+    let isMusicPlaying = false;
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicIcon = document.getElementById('musicIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+
+    // Toggle musik
+    function toggleMusic() {
+      if (!isMusicPlaying) {
+        backgroundMusic.play();
+        musicIcon.classList.add('spin');
+        pauseIcon.style.display = 'none';
+      } else {
+        backgroundMusic.pause();
+        musicIcon.classList.remove('spin');
+        pauseIcon.style.display = 'flex';
+      }
+      isMusicPlaying = !isMusicPlaying;
+    }
+
+    // Buka undangan
+    document.getElementById('openInvitation').addEventListener('click', function () {
+      const guestName = document.getElementById('guestName').value.trim();
+      const attendance = document.getElementById('attendance').value;
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      const pagesContainer = document.getElementById('pagesContainer');
+      const thankYouMessage = document.getElementById('thankYouMessage');
+
+      if (!guestName) {
+        alert("Silakan masukkan nama tamu terlebih dahulu.");
+        return;
+      }
+
+      thankYouMessage.textContent = `Terima kasih, ${guestName}, atas konfirmasinya! Anda ${attendance}.`;
+
+      // Transisi tampilan
+      welcomeScreen.classList.add('hide-welcome');
+      setTimeout(() => {
+        pagesContainer.classList.add('show-pages');
+        backgroundMusic.play();
+        isMusicPlaying = true;
+        musicIcon.classList.add('spin');
+        pauseIcon.style.display = 'none';
+
+        // Mulai animasi teks di halaman pertama
+        setTimeout(() => {
+          revealTextElements('#page1');
+          // Observer Page 2
+          const observerPage2 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                revealTextElements('#page2');
+                observerPage2.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
+          observerPage2.observe(document.getElementById('page2'));
+
+          // Observer Page 4 (Habib)
+          const observerPage4 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                revealTextElements('#page4');
+                observerPage4.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
+          observerPage4.observe(document.getElementById('page4'));
+
+          // Observer Page 5 (Save The Date)
+          const observerPage5 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                revealTextElements('#page5');
+                observerPage5.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
+          observerPage5.observe(document.getElementById('page5'));
+
+          // Observer Page 6 (Gallery)
+          const observerPage6 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                revealTextElements('#page6');
+                observerPage6.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
+          observerPage6.observe(document.getElementById('page6'));
+
+          // Contoh jika ada Page 7:
+          
+          const observerPage7 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                revealTextElements('#page7');
+                observerPage7.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
+          observerPage7.observe(document.getElementById('page7'));
+          
+
+        }, 500);
+      }, 300);
+    });
+
+    // Fungsi untuk menampilkan teks dengan animasi
+    function revealTextElements(pageSelector) {
+      const page = document.querySelector(pageSelector);
+      const hiddenTexts = page.querySelectorAll('.hidden-text');
+      hiddenTexts.forEach((element, index) => {
+        const animation = element.getAttribute('data-animation');
+        setTimeout(() => {
+          element.classList.add(`animate-${animation}`);
+        }, index * 300);
+      });
+    }
+
+    // Lightbox Gallery
+    const galleryImages = document.querySelectorAll('.gallery-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxSwiperContainer = document.getElementById('lightboxSwiper').querySelector('.swiper-wrapper');
+
+    let swiperInstance;
+
+    // Buka lightbox saat gambar di-klik
+    galleryImages.forEach((img) => {
+      img.addEventListener('click', () => {
+        const index = parseInt(img.dataset.index);
+
+        // Kosongkan slide
+        lightboxSwiperContainer.innerHTML = '';
+
+        // Tambahkan slide ke Swiper
+        galleryImages.forEach((gImg, i) => {
+          const slide = document.createElement('div');
+          slide.classList.add('swiper-slide');
+          const slideImg = document.createElement('img');
+          slideImg.src = gImg.src;
+          slide.appendChild(slideImg);
+          lightboxSwiperContainer.appendChild(slide);
+        });
+
+        // Tampilkan lightbox
+        lightbox.style.display = 'flex';
+
+        // Inisialisasi atau update Swiper
+        swiperInstance = new Swiper('#lightboxSwiper', {
+          initialSlide: index,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      });
+    });
+
+    // Tutup lightbox
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+    // Fungsi countdown timer
+    function updateCountdown() {
+      // Set tanggal target (30 Maret 2025)
+      const targetDate = new Date('March 30, 2025 08:00:00').getTime();
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+      
+      // Hitung hari, jam, menit, detik
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      
+      // Update elemen HTML
+      document.getElementById('countdown-days').textContent = days;
+      document.getElementById('countdown-hours').textContent = hours;
+      document.getElementById('countdown-minutes').textContent = minutes;
+      document.getElementById('countdown-seconds').textContent = seconds;
+      
+      // Jalankan fungsi setiap detik
+      setTimeout(updateCountdown, 1000);
+    }
+
+    // Mulai countdown timer saat undangan dibuka
+    document.getElementById('openInvitation').addEventListener('click', function() {
+      setTimeout(() => {
+        updateCountdown();
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
